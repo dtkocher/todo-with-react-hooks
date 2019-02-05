@@ -9,8 +9,10 @@ const TaskList = (props) => {
 
   const addTask = (e) => {
     if((e.key===undefined || e.key==='Enter') && newTask !== '') {
-      context.setTasks([...context.tasks, { name: newTask, subTasks: [] }])
-      setNewTask("")
+      context.setTasks(
+        (tasks) => ([...tasks, { name: newTask, subTasks: [] }]),
+        setNewTask("")
+      )
     }
   }
 
