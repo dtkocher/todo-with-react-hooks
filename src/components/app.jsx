@@ -9,9 +9,9 @@ const App = (props) => {
         <div className="card">
           <div className="card-body">
             <h5 className="card-title">TODO's with React Hooks</h5>
-            <p className="card-text">
+            <div className="card-text">
               <TaskList />
-            </p>
+            </div>
           </div>
         </div>
       </div>
