@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react'
 import _ from 'lodash'
+import SubTask from './subTask'
 import { GlobalContext } from './context/globalContext'
 
 const SubTaskList = (props) => {
@@ -9,7 +10,7 @@ const SubTaskList = (props) => {
   const task = context.tasks[props.taskIdx]
 
   const addSubTask = (e) => {
-    if(e.key===undefined || e.key==='Enter') {
+    if((e.key===undefined || e.key==='Enter') && newSubTask !== '') {
       context.setTasks(() => {
         return _.map(context.tasks, (task, idx) => {
           if(idx===props.taskIdx) {
@@ -44,8 +45,10 @@ const SubTaskList = (props) => {
       </div>
 
       <ul>
-        {_.map(task.subTasks, (subTask, indx) => (
-          <li key={indx}>{subTask.name}</li>
+        {_.map(task.subTasks, (subTask, idx) => (
+          <li key={idx}>
+            <SubTask taskIdx={props.taskIdx} subTaskIdx={idx} />
+          </li>
         ))}
       </ul>
     </div>

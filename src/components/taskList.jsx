@@ -8,7 +8,7 @@ const TaskList = (props) => {
   const [newTask, setNewTask] = useState("")
 
   const addTask = (e) => {
-    if(e.key===undefined || e.key==='Enter') {
+    if((e.key===undefined || e.key==='Enter') && newTask !== '') {
       context.setTasks([...context.tasks, { name: newTask, subTasks: [] }])
       setNewTask("")
     }
