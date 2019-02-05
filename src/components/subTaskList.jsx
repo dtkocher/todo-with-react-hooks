@@ -9,20 +9,25 @@ const SubTaskList = (props) => {
 
   const task = context.tasks[props.taskIdx]
 
+  const updateTasks = (tasks) => {
+    return _.map(context.tasks, (task, idx) => {
+      if(idx===props.taskIdx) {
+        return {
+          ...task,
+          ['subTasks']: [...task['subTasks'], {name: newSubTask}]
+        }
+      } else {
+        return task
+      }
+    })
+  }
+
   const addSubTask = (e) => {
     if((e.key===undefined || e.key==='Enter') && newSubTask !== '') {
-      context.setTasks(() => {
-        return _.map(context.tasks, (task, idx) => {
-          if(idx===props.taskIdx) {
-            return {
-              ...task,
-              ['subTasks']: [...task['subTasks'], {name: newSubTask}]
-            }
-          } else {
-            return task
-          }
-        })
-      }, setNewSubTask(""))
+      context.setTasks(
+        (tasks) => updateTasks(tasks),
+        setNewSubTask("")
+      )
     }
   }
 
