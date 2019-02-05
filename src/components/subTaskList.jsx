@@ -14,7 +14,7 @@ const SubTaskList = (props) => {
       if(idx===props.taskIdx) {
         return {
           ...task,
-          ['subTasks']: [...task['subTasks'], {name: newSubTask}]
+          ['subTasks']: [...task['subTasks'], {name: newSubTask, complete: false}]
         }
       } else {
         return task
