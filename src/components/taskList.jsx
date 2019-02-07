@@ -9,10 +9,11 @@ const TaskList = (props) => {
 
   const addTask = (e) => {
     if((e.key===undefined || e.key==='Enter') && newTask !== '') {
-      context.setTasks(
-        (tasks) => ([...tasks, { name: newTask, subTasks: [] }]),
-        setNewTask("")
-      )
+      context.dispatch({
+        type: 'add-task',
+        newTask: newTask
+      })
+      setNewTask("")
     }
   }
 
@@ -37,7 +38,7 @@ const TaskList = (props) => {
       <div className="container">
         <div className="card">
           <ul className="list-group list-group-flush">
-            {_.map(context.tasks, (task, indx) => (
+            {_.map(context.state, (task, indx) => (
               <Task key={indx} taskIdx={indx} />
             ))}
           </ul>

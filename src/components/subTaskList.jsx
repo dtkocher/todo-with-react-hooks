@@ -6,28 +6,16 @@ import { GlobalContext } from './context/globalContext'
 const SubTaskList = (props) => {
   const context = useContext(GlobalContext)
   const [newSubTask, setNewSubTask] = useState("")
-
-  const task = context.tasks[props.taskIdx]
-
-  const updateTasks = (tasks) => {
-    return _.map(context.tasks, (task, idx) => {
-      if(idx===props.taskIdx) {
-        return {
-          ...task,
-          ['subTasks']: [...task['subTasks'], {name: newSubTask, complete: false}]
-        }
-      } else {
-        return task
-      }
-    })
-  }
+  const task = context.state[props.taskIdx]
 
   const addSubTask = (e) => {
     if((e.key===undefined || e.key==='Enter') && newSubTask !== '') {
-      context.setTasks(
-        (tasks) => updateTasks(tasks),
-        setNewSubTask("")
-      )
+      context.dispatch({
+        type: 'add-sub-task',
+        taskIdx: props.taskIdx,
+        newSubTask: newSubTask
+      })
+      setNewSubTask("")
     }
   }
 

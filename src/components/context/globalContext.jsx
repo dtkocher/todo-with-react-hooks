@@ -1,14 +1,15 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useState, useReducer } from 'react'
+import { GlobalReducer } from './globalReducer'
 
 export const GlobalContext = createContext()
 
 export const GlobalProvider = (props) => {
-  const [tasks, setTasks] = useState(props.tasks)
+  const [state, dispatch] = useReducer(GlobalReducer, props.tasks)
 
   return (
     <GlobalContext.Provider value={{
-      tasks: tasks,
-      setTasks: setTasks,
+      state: state,
+      dispatch: dispatch,
     }}>
       {props.children}
     </GlobalContext.Provider>
