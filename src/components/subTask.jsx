@@ -4,43 +4,18 @@ import { GlobalContext } from './context/globalContext'
 
 const SubTask = (props) => {
   const context = useContext(GlobalContext)
-  const subTask = context.tasks[props.taskIdx].subTasks[props.subTaskIdx]
+  const subTask = context.state[props.taskIdx].subTasks[props.subTaskIdx]
   const [complete, setComplete] = useState(subTask.complete)
 
-
-  const updatedSubTasks = (subTasks) => {
-    return _.map(subTasks, (subTask, idx) => {
-      if(idx === props.subTaskIdx) {
-        return {
-          ...subTask,
-          ['complete']: !complete
-        }
-      } else {
-        return subTask
-      }
-    })
-  }
-
-  const updatedTasks = (tasks) => {
-    return _.map(tasks, (task, idx) => {
-      if(idx === props.taskIdx) {
-        return {
-          ...task,
-          ['subTasks']: updatedSubTasks(task.subTasks)
-        }
-      } else {
-        return task
-      }
-    })
-  }
-
   const updateActive = () => {
-    context.setTasks(
-      (tasks) => updatedTasks(tasks),
-      setComplete(complete => !complete)
-    )
+    context.dispatch({
+      type: 'complete-sub-task',
+      complete: !complete,
+      taskIdx: props.taskIdx,
+      subTaskIdx: props.subTaskIdx
+    })
+    setComplete(complete => !complete)
   }
-
 
   return (
     <div className="custom-control custom-checkbox">

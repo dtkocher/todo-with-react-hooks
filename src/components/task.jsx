@@ -6,7 +6,7 @@ import { GlobalContext } from './context/globalContext'
 const Task = (props) => {
   const context = useContext(GlobalContext)
   const [expand, setExpand] = useState(false)
-  const task = context.tasks[props.taskIdx]
+  const task = context.state[props.taskIdx]
 
   const unfinished = _.filter(task.subTasks, (subTask) => { return !subTask.complete })
 
