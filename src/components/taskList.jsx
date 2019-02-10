@@ -1,11 +1,20 @@
-import React, { useContext, useState } from 'react'
+import React, { useEffect, useContext, useState } from 'react'
 import _ from 'lodash'
 import { GlobalContext } from './context/globalContext'
+import { useGet } from './hooks/useGet'
 import Task from './task'
 
 const TaskList = (props) => {
   const context = useContext(GlobalContext)
   const [newTask, setNewTask] = useState("")
+
+  useEffect(()=> {
+    useGet('https://api.myjson.com/bins/d6uvc').
+      then((response) => {
+        context.dispatch({type: 'set-tasks', tasks: response.data})
+      }).
+      catch(errors => console.log(errors))
+  }, [])
 
   const addTask = (e) => {
     if((e.key===undefined || e.key==='Enter') && newTask !== '') {

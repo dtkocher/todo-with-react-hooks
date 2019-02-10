@@ -42,6 +42,8 @@ export const GlobalReducer = (state, action) => {
 
 
   switch(action.type) {
+    case 'set-tasks':
+      return action.tasks
     case 'add-task':
       return [ ...state, { name: action.newTask, subTasks: [] } ]
     case 'add-sub-task':
