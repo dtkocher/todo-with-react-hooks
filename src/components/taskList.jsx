@@ -7,14 +7,11 @@ import Task from './task'
 const TaskList = (props) => {
   const context = useContext(GlobalContext)
   const [newTask, setNewTask] = useState("")
+  const {data, errors} = useGet('https://api.myjson.com/bins/d6uvc')
 
-  useEffect(()=> {
-    useGet('https://api.myjson.com/bins/d6uvc').
-      then((response) => {
-        context.dispatch({type: 'set-tasks', tasks: response.data})
-      }).
-      catch(errors => console.log(errors))
-  }, [])
+  useEffect(() => {
+    context.dispatch({type: 'set-tasks', tasks: data})
+  }, [data])
 
   const addTask = (e) => {
     if((e.key===undefined || e.key==='Enter') && newTask !== '') {
