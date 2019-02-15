@@ -14,4 +14,19 @@ For more information on the motivations and the benefits of web hooks I would re
 
 #### useState at a Glance
 
-I am not going into great detail about useState but will give a quick rundown.  The useState hook allows you to give a functional component state.  It does this by returning state variables and a function to update that state variable.
+The useState hook allows you to give a functional component, state. Meaning you will no longer need to worry about making a class component if you want to have state in a functional component.  Lets look at a small example and explain what is going on.
+
+```javascript
+import React, { useState } from "react";
+
+export default function Task(props) {
+  const [task, setTask] = useState();
+
+  return (
+    <div>
+      <input type="text" value={task} onChange={e => setTask(e.target.value)} />
+      {task}
+    </div>
+  );
+}
+```
