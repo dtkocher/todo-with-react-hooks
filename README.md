@@ -45,10 +45,10 @@ export default function Tasks(props) {
 }
 ```
 
-In this example we are making a tasks list. The user types in a task, clicks the Add button, and a task is added to the task list.  So what is going on with the react hook `useState`?
+In this example we are making a task list. The user types in a task, clicks the Add button, and a task is added to the task list.  So what is going on with the react hook `useState`?
 
 *  Every time `useState()` is called two things are returned.  A new state variable and a function to update the state variable.  As you can see `const [newTask, setNewTask] = useState()` creates a new state variable and using array deconstruction we call the new state variable `newTask` and the function to update this variable `setNewTask` 
-*  You can give a state variable an initial value by passing in an argument to `useState`.  On the following line we give the state variable `tasks` an initial value of an empty array, `const [tasks, setTasks] = useState([])`.  Here it is an array but it can be anything from a string, integer, to an object.
+*  You can give a state variable an initial value by passing in an argument to `useState`.  On the following line we give the state variable `tasks` an initial value of an empty array, `const [tasks, setTasks] = useState([])`.  Here it is an array but it can be anything, a string, integer, or an object.
 *  To use or display the state variables all you need to do is call the state variables `tasks` or `newTask` directly.
 *  To update a state variable let's look at the `addTask()` function.  Inside this function you can see we are updating both the `tasks` state variable and `newTasks` state variable.  In both examples you can see we just pass in a new value to the update function and react will re-render the component with the new value. One thing to point out is you will want to follow the same rules you always have of not mutating the state variable directly but recreating it and adding to it.  As you can see in `setTasks([...tasks, newTask])` we create a new array by deconstructing the `tasks` state variable and append the `newTask` state variable to the end.
 
@@ -84,7 +84,7 @@ export default function Tasks(props) {
 
 }
 ```
-So what we have done is added to the previous example a `useEffect` hook.  This uses the `axios` package to go out and asynchronously fetch tasks and then set the state variable `tasks` to the returned list of tasks.  So what should you be looking at in the `useEffect` hook:
+This uses the `axios` package to go out and asynchronously fetch tasks and then set the state variable `tasks` to the returned list of tasks.  So what should you be looking at in the `useEffect` hook>
 
 *  The first thing to notice is that `useEffect` is called inside of the component.  This gives it access to everything that is declared in the component including the state variables created by the `useState` hook or any other variables generated from hooks such as `useReducer` or `useContext`. I do want to make it clear though you will not have the ability to call any of these hooks directly in `useEffect`.  For example you can't do `const [var, func] = useState()` inside of the `useEffect` hook.  You can only call hooks directly inside the function component.
 *  `useEffect` takes two arguments, a function and an array. 
