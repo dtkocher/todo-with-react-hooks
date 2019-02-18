@@ -18,15 +18,35 @@ The useState hook allows you to give a functional component, state. Meaning you 
 
 ```javascript
 import React, { useState } from "react";
+import _ from "lodash";
 
-export default function Task(props) {
-  const [task, setTask] = useState();
+export default function Tasks(props) {
+  const [newTask, setNewTask] = useState();
+  const [tasks, setTasks] = useState([]);
+
+  function addTask() {
+    setTasks([...tasks, newTask]);
+    setNewTask("");
+  }
 
   return (
     <div>
-      <input type="text" value={task} onChange={e => setTask(e.target.value)} />
-      {task}
+      <input
+        type="text"
+        value={newTask}
+        onChange={e => setNewTask(e.target.value)}
+      />
+      <button onClick={addTask}>Add</button>
+      <div>
+        {_.map(tasks, task => (
+          <div>{task}</div>
+        ))}
+      </div>
     </div>
   );
 }
 ```
+
+In this example we are making a tasks list. The user types in a task, clicks the Add button, and a task is added to the task list.  So what is going on with the react hook `useState`?
+
+* The 
