@@ -1,6 +1,6 @@
 ## React Hooks at a Glance
 
-In this post we are going to create our own custom webhook.  But before we do I would like to answer the question why you would want to use webhooks and go over a few of the built in react hooks `useState` and `useEffect`.
+In this post we are going to answer the question why you would want to use react hooks and go over a few of the built in react hooks `useState` and `useEffect`.
 
 #### Why webhooks? 
 
