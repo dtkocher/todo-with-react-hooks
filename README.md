@@ -57,4 +57,7 @@ In this example we are making a tasks list. The user types in a task, clicks the
 
 #### useEffect at a Glance
 
-SDadsfaf
+The `useEffect` hook combines all of lifecycle hooks (`componentDidMount`, `componentDidUpdate`, and `componentWillUnmount`) used in classes into one central API.
+
+
+
