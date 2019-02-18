@@ -57,7 +57,52 @@ In this example we are making a tasks list. The user types in a task, clicks the
 
 #### useEffect at a Glance
 
-The `useEffect` hook combines all of lifecycle hooks (`componentDidMount`, `componentDidUpdate`, and `componentWillUnmount`) used in classes into one central API.
+The `useEffect` hook combines all of lifecycle hooks (`componentDidMount`, `componentDidUpdate`, and `componentWillUnmount`) used in classes into one central API. Now lets add on to the previous example a `useEffect` hook:
 
+```javascript
+import React, { useState, useEffect } from "react";
+import _ from "lodash";
+import axios from "axios";
+
+export default function Tasks(props) {
+  const [newTask, setNewTask] = useState();
+  const [tasks, setTasks] = useState([]);
+
+  useEffect(() => {
+    axios({
+      method: "get",
+      url: "https://api.jsonbin.io/b/5c6af0c09dfbb91d718215d8",
+      params: {}
+    }).then(response => {
+      setTasks(response.data.tasks);
+    });
+    
+    /*return function cleanup() {
+      //put cleanup logic here
+    }*/
+  }, []);
+
+  function addTask() {
+    setTasks([...tasks, newTask]);
+    setNewTask("");
+  }
+
+  return (
+    <div>
+      <input
+        type="text"
+        value={newTask}
+        onChange={e => setNewTask(e.target.value)}
+      />
+      <button onClick={addTask}>Add</button>
+      <div>
+        {_.map(tasks, task => (
+          <div>{task}</div>
+        ))}
+      </div>
+    </div>
+  );
+}
+```
 
 
