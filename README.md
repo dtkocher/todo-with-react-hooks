@@ -1,6 +1,6 @@
 ## React Hooks at a Glance
 
-In this post we are going to answer the question why you would want to use react hooks and go over a few of the built in react hooks `useState` and `useEffect`.
+In this post we are going to answer the question why you would want to use react hooks and go over a few of the built in react hooks.  I will be coverning the `useState` and `useEffect` hooks as I feel these will give you the most bang for your buck when trying to convert to functional components.
 
 #### Why Hooks? 
 
