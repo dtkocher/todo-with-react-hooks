@@ -51,14 +51,7 @@ In this example we are making a tasks list. The user types in a task, clicks the
 
 *  Everytime `useState()` is called two things are returned.  A new state variable and a function to update the state variable.  As you can see `const [newTask, setNewTask] = useState()` creates a new state variable and using array deconstruction we call the new state variable `newTask` and the function to update this variable `setNewTask` 
 *  You can give a state variable an inital value by passing in an argument to `useState`.  On the following line we give the state variable `tasks` an intital value of an empty array, `const [tasks, setTasks] = useState([])`.  Here it is an array but it can be anything from a string, integer, to an object.
-*  To use or display the state variables all you need to do is call the state variable `tasks` or `newTask` as yo can see ```
-```
-<div>
-  {_.map(tasks, task => (
-    <div>{task}</div>
-  ))}
-</div>
-```
+*  To use or display the state variables all you need to do is call the state variabes `tasks` or `newTask` directly.
 *  To update a state variable lets look at the `addTask()` function.  Inside this function you can see we are updating both the `tasks` state variable and `newTasks` state variable.  In both examples you can see we just pass in a new value to the update function and react will re-render the component with the new value. One thing to point out is you will want to follow the same rules you always have of not mutating the state variable directly but recreating it and adding to it.  As you can see in `setTasks([...tasks, newTask])` we create a new array by desconstructing the `tasks` state variable and append the `newTask` state variable to the end.
 
 
