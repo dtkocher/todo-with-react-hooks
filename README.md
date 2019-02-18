@@ -4,7 +4,7 @@ In this post we are going to answer the question why you would want to use react
 
 #### Why Hooks? 
 
-Well a quick summary into why you should use hooks and the benefits they provide.  
+A quick summary into why you should use hooks and the benefits they provide.  
 *  It gives you the ability to connect and reuse stateful logic, removing the need for render props and higher-order components.
 *  It helps take a complex component where logic is spread out and shared among it’s many lifecycle methods and put shared logic into smaller independent functions. 
 *  It reduces confusion on when or why you need a component to be a class versus a function.
