@@ -82,26 +82,8 @@ export default function Tasks(props) {
     }*/
   }, []);
 
-  function addTask() {
-    setTasks([...tasks, newTask]);
-    setNewTask("");
-  }
+  ...
 
-  return (
-    <div>
-      <input
-        type="text"
-        value={newTask}
-        onChange={e => setNewTask(e.target.value)}
-      />
-      <button onClick={addTask}>Add</button>
-      <div>
-        {_.map(tasks, task => (
-          <div>{task}</div>
-        ))}
-      </div>
-    </div>
-  );
 }
 ```
 
