@@ -9,8 +9,6 @@ Well a quick summary into why you should use hooks and the benefits they provide
 *  It helps take a complex component where logic is spread out and shared among it’s many lifecycle methods and put shared logic into smaller independent functions. 
 *  It reduces confusion on when or why you need a component to be a class versus a function.
 
-For more information on the motivations and the benefits of web hooks I would refer you to https://reactjs.org/docs/hooks-intro.html.
-
 
 #### useState at a Glance
 
@@ -86,5 +84,15 @@ export default function Tasks(props) {
 
 }
 ```
+So what we have done is added to the previous example a `useEffect` hook.  This uses the `axios` package to go out and asyncronosly fetch tasks and then set the state variable `tasks` to the returned list of tasks.  So what should you be looking at in the `useEffect` hook:
+
+*  The first thing to notice is that `useEffect` is called inside of the component.  This gives it access to everything that is declared in the component including the state variables created by the `useState` hook or any other variables generated from hooks such as `useReducer` or `useContext`. I do want to make it clear though you will not have the ability to call any of these hooks directly in `useEffect`.  For example you can't do `const [var, funct] = useState()` inside of the `useEffect` hook.  You can only call hooks directly inside the function component.
+*  `useEffect` takes two arguments, a function and a array. 
+  *  The function is what will be called when the `useEffect` hook is called. Here we are calling out to an API endpoint to retreive a list of tasks.  As you see commented out you can return a function to perform cleanup logic.  This is great if for example you are dealing with pub/sub connections and you need to clean up the connections. 
+  *  The second is an optional parameter which is an array.  This tells the `useEffect` hook when it should be called.  If nothing is passed in here the `useEffect` hook will be called on every render.  What you can do so this doesn't happen is pass in an array of arguments.  For example an empty array, [], means to only run this hook on mount and unmount.  If for example we created a `useEffect` hook to update the endpoint with the new task list we could pass an array with the state variable `tasks`, [tasks].  This would then call the hook everytime tasks is updated.
+*  You can have as many `useEffect` hooks in a component as needed.  Ideally you should create one for each set of related pieces of logic that you need.  For example I would create a new `useEffect` in the scenerio were I wanted to update the API endpoint everytime `tasks` is updated.
+
+### Conclusion
+I hope this gives you some insight into how to use hooks and the value they bring.
 
 
