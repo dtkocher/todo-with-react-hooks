@@ -30,10 +30,15 @@ const SubTaskList = (props) => {
             value={newSubTask}
             onKeyPress={(e) => addSubTask(e)}
             onChange={(e) => (setNewSubTask(e.target.value))}
+            data-testid={`new-subtask-input-${props.taskIdx}`}
             />
         </div>
         <div className="form-group">
-          <button className="btn btn-primary" onClick={addSubTask}>Add</button>
+          <button
+            className="btn btn-primary"
+            onClick={addSubTask}
+            data-testid={`add-new-subtask-button-${props.taskIdx}`}
+            >Add</button>
         </div>
       </div>
 

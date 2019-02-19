@@ -12,7 +12,10 @@ const Task = (props) => {
 
   return (
     <li className="list-group-item">
-      <div onClick={() => setExpand(expand => !expand)}>
+      <div
+        onClick={() => setExpand(expand => !expand)}
+        data-testid={`task-div-${props.taskIdx}`}
+        >
         {task.name} - {unfinished.length} Unfinished
       </div>
       { expand && (<SubTaskList taskIdx={props.taskIdx}/>) }

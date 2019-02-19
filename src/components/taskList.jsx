@@ -13,15 +13,15 @@ const TaskList = (props) => {
     context.dispatch({type: 'set-tasks', tasks: data})
   }, [data])
 
-  const addTask = (e) => {
-    if((e.key===undefined || e.key==='Enter') && newTask !== '') {
+  const addTask = e => {
+    if ((e.key === undefined || e.key === "Enter") && newTask !== "") {
       context.dispatch({
-        type: 'add-task',
+        type: "add-task",
         newTask: newTask
-      })
-      setNewTask("")
+      });
+      setNewTask("");
     }
-  }
+  };
 
   return (
     <div>
@@ -31,13 +31,20 @@ const TaskList = (props) => {
             type="text"
             className="form-control form-control-sm"
             placeholder="New Task"
+            data-testid="new-task-input"
             value={newTask}
             onKeyPress={e => addTask(e)}
-            onChange={(e) => (setNewTask(e.target.value))}
-            />
+            onChange={e => setNewTask(e.target.value)}
+          />
         </div>
         <div className="form-group">
-          <button className="btn btn-primary" onClick={addTask}>Add</button>
+          <button
+            className="btn btn-primary"
+            data-testid="add-new-task-button"
+            onClick={addTask}
+            >
+            Add
+          </button>
         </div>
       </div>
 
@@ -51,6 +58,6 @@ const TaskList = (props) => {
         </div>
       </div>
     </div>
-  )
-}
-export default TaskList
+  );
+};
+export default TaskList;

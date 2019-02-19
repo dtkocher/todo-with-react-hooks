@@ -1,13 +1,13 @@
 import _ from 'lodash'
 
-export const GlobalReducer = (state, action) => {
+export const GlobalReducer = (state=[], action) => {
 
   const addSubTask = (taskIdx, newSubTask) => {
     return _.map(state, (task, idx) => {
       if(idx===taskIdx) {
         return {
           ...task,
-          ['subTasks']: [...task['subTasks'], {name: newSubTask, complete: false}]
+          'subTasks': [...task['subTasks'], {name: newSubTask, complete: false}]
         }
       } else {
         return task
@@ -19,7 +19,7 @@ export const GlobalReducer = (state, action) => {
       if(idx === subTaskIdx) {
         return {
           ...subTask,
-          ['complete']: complete
+          'complete': complete
         }
       } else {
         return subTask
@@ -32,7 +32,7 @@ export const GlobalReducer = (state, action) => {
       if(idx === taskIdx) {
         return {
           ...task,
-          ['subTasks']: completeSubTasks(complete, task.subTasks, subTaskIdx)
+          'subTasks': completeSubTasks(complete, task.subTasks, subTaskIdx)
         }
       } else {
         return task
