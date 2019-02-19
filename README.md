@@ -1,8 +1,13 @@
-## React Hooks at a Glance
+| Author         | Editor(s)      | Edit Completed? |
+| :------------: | :-------------:| :-------------: | 
+| Dustin Kocher  | Jeremy Kahne   | Yes or no       |      
+
+
+# React Hooks at a Glance
 
 In this post we are going to answer the question why you would want to use React hooks and go over a few of the ones built in.  I will be covering the `useState` and `useEffect` hooks as I feel these will give you the most bang for your buck when trying to convert to functional components.
 
-#### Why Hooks? 
+## Why Hooks? 
 
 Why should you use hooks? What benefits do they provide?  
 *  They give you the ability to connect and reuse stateful logic, removing the need for render props and higher-order components.
@@ -10,7 +15,7 @@ Why should you use hooks? What benefits do they provide?
 *  They reduce confusion on when or why you need a component to be a class versus a function.
 
 
-#### useState at a Glance
+## useState at a Glance
 
 The useState hook allows you to give state to a functional component - meaning you will no longer need to worry about making a class component if you want to have state in a functional component.  Let's look at a small example and explain what is going on.
 
@@ -53,7 +58,7 @@ In this example we are making a task list. The user types in a task, clicks the 
 *  To update a state variable let's look at the `addTask()` function.  Inside this function you can see we are updating both the `tasks` state variable and `newTasks` state variable.  In both examples you can see we just pass in a new value to the update function and react will re-render the component with the new value. One thing to point out is you will want to follow the same rules you always have of not mutating the state variable directly but recreating it and adding to it.  As you can see in `setTasks([...tasks, newTask])` we create a new array by deconstructing the `tasks` state variable and append the `newTask` state variable to the end.
 
 
-#### useEffect at a Glance
+## useEffect at a Glance
 
 The `useEffect` hook combines several of the most commonly used lifecycle hooks (`componentDidMount`, `componentDidUpdate`, and `componentWillUnmount`) used in classes into one central API. Now let's add on to the previous example a `useEffect` hook:
 
@@ -92,7 +97,7 @@ This uses the `axios` package to asynchronously fetch tasks and then set the sta
 *  The second is an optional parameter which is an array.  This tells the `useEffect` hook when it should be called.  If nothing is passed in here the `useEffect` hook will be called on every render.  Passing in an empty array will only run this hook on mount and unmount.  Passing in an array with the state variable, for example `tasks`, will call the hook every time it is updated.  
 *  You can have as many `useEffect` hooks in a component as needed.  Ideally you should create one for each set of related pieces of logic that you need.  For example I would create a new `useEffect` in the scenario were I wanted to update the API endpoint every time `tasks` is updated.
 
-### Conclusion
+## Conclusion
 React has done a lot through the years to improve itself.  I hope this gives you some insight into how to use hooks and the value they bring.  I personally feel on top of the benefits previously mentioned, this will help in making code easier to read but also the logic of a component and its lifecycles easier to follow.
 
 
