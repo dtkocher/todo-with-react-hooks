@@ -9,7 +9,7 @@ const SubTask = (props) => {
 
   const updateActive = () => {
     context.dispatch({
-      type: 'complete-sub-task',
+      type: 'COMPLETE_SUB_TASK',
       complete: !complete,
       taskIdx: props.taskIdx,
       subTaskIdx: props.subTaskIdx

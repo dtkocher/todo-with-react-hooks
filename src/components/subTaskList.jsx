@@ -11,7 +11,7 @@ const SubTaskList = (props) => {
   const addSubTask = (e) => {
     if((e.key===undefined || e.key==='Enter') && newSubTask !== '') {
       context.dispatch({
-        type: 'add-sub-task',
+        type: 'ADD_SUB_TASK',
         taskIdx: props.taskIdx,
         newSubTask: newSubTask
       })

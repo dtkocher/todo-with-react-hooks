@@ -1,13 +1,13 @@
 import _ from 'lodash'
 
-export const GlobalReducer = (state, action) => {
+export const GlobalReducer = (state=[], action) => {
 
   const addSubTask = (taskIdx, newSubTask) => {
     return _.map(state, (task, idx) => {
       if(idx===taskIdx) {
         return {
           ...task,
-          ['subTasks']: [...task['subTasks'], {name: newSubTask, complete: false}]
+          'subTasks': [...task['subTasks'], {name: newSubTask, complete: false}]
         }
       } else {
         return task
@@ -19,7 +19,7 @@ export const GlobalReducer = (state, action) => {
       if(idx === subTaskIdx) {
         return {
           ...subTask,
-          ['complete']: complete
+          'complete': complete
         }
       } else {
         return subTask
@@ -32,7 +32,7 @@ export const GlobalReducer = (state, action) => {
       if(idx === taskIdx) {
         return {
           ...task,
-          ['subTasks']: completeSubTasks(complete, task.subTasks, subTaskIdx)
+          'subTasks': completeSubTasks(complete, task.subTasks, subTaskIdx)
         }
       } else {
         return task
@@ -42,13 +42,13 @@ export const GlobalReducer = (state, action) => {
 
 
   switch(action.type) {
-    case 'set-tasks':
+    case 'SET_TASKS':
       return action.tasks
-    case 'add-task':
+    case 'ADD_TASK':
       return [ ...state, { name: action.newTask, subTasks: [] } ]
-    case 'add-sub-task':
+    case 'ADD_SUB_TASK':
       return addSubTask(action.taskIdx, action.newSubTask)
-    case 'complete-sub-task':
+    case 'COMPLETE_SUB_TASK':
       return completeTaskSubTask(action.complete, action.taskIdx, action.subTaskIdx)
     default:
       return state

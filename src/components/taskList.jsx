@@ -10,13 +10,13 @@ const TaskList = (props) => {
   const {data, errors} = useGet({url: 'https://api.myjson.com/bins/d6uvc', trigger: 'onLoad'})
 
   useEffect(() => {
-    context.dispatch({type: 'set-tasks', tasks: data})
+    context.dispatch({type: 'SET_TASKS', tasks: data})
   }, [data])
 
   const addTask = (e) => {
     if((e.key===undefined || e.key==='Enter') && newTask !== '') {
       context.dispatch({
-        type: 'add-task',
+        type: 'ADD_TASK',
         newTask: newTask
       })
       setNewTask("")
